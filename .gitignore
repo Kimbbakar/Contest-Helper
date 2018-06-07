@@ -1,0 +1,11 @@
+*.pyc 
+__pycache__ 
+__pycache__/
+*.py[cod]
+.env
+env/ 
+
+# SQLite database files
+
+*.sqlite3
+
