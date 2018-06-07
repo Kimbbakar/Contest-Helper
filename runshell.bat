@@ -1,4 +1,4 @@
 @echo off
 
-start cmd /K ".\env\Scripts\activate  & cd myproject &  python manage.py shell "  
+start cmd /K ".\env\Scripts\activate  & cd ContestHelper &  python manage.py shell "  
  

@@ -1,3 +1,3 @@
 @echo off
-start cmd /K ".\env\Scripts\activate & cd myproject & python manage.py runserver"  
+start cmd /K ".\env\Scripts\activate & cd ContestHelper & python manage.py runserver"  
   
