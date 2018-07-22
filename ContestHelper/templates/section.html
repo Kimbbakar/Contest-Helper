@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+ 
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Home</a></li>
+  <li class="breadcrumb-item active">Section</a></li>
+{% endblock %}
+
+{% block content %}
+
+<div align="center" >
+	<h1 >Section name</h1>
+	<p>Coach Name</p>
+</div>
+ 
+<br>
+
+<div align="center">
+
+	<div style="float: left; width: 225px" >
+		<form action="#">
+		    <input type="submit" class="btn btn-info"  value="Create contest" >
+		</form>
+
+	</div>
+	<div style="float: right; width: 225px" >
+		<form action="#">
+		    <input type="submit" class="btn btn-info"  value="Add Student" >
+		</form>
+
+	</div>
+
+</div>
+
+<br>
+<br>
+
+<div class="container" align="center" >
+	<div align="center"  class= " table-responsive " >
+		<table  class="table table-bordered table-striped table-highlight">
+		  <thead  align="center" class="thead-inverse">
+				<tr>
+					<th>Student Name</th>
+					<th>Status</th> 
+				</tr>
+
+			</thead>
+
+			<tbody align="center">
+				<tr>
+					<td><a href="#" >ABC</td>
+					<td>Remove</td>
+				</tr>
+				<tr>
+					<td><a href="#" > EFG</td>
+					<td>Remove</td>
+				</tr>
+			</tbody>
+		</table>
+	</div> 
+</div>
+
+</body>
+
+<br>
+<br>
+ 
+
+
+{% endblock %}
