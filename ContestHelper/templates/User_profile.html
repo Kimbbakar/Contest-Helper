@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+ 
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Home</a></li>
+  <li class="breadcrumb-item active">User</a></li>
+{% endblock %}
+
+{% block content %}
+
+<div align="center" >
+	<h1 >User Name</h1>
+	<p>Univeristy Name</p>
+</div>
+
+
+<br>
+<br>
+
+<div class="container" align="center" >
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Section</button>
+
+  <div id="demo" class="collapse">
+    <br>
+	<button type="button"   ><a href="#">Create Section</a></button>
+    <br>
+
+  	<div align="center"  class= " table-responsive " >
+	 <table  class="table table-bordered table-striped table-highlight">
+	      <thead  align="center" class="thead-inverse">
+				<tr>
+					<th>Section Name</th>
+					<th>Role</th> 
+				</tr>
+
+			</thead>
+
+			<tbody align="center">
+				<tr>
+					<td><a href="#" > NSU</td>
+					<td>Student</td>
+				</tr>
+				<tr>
+					<td><a href="#" > EWU</td>
+					<td>Coach</td>
+				</tr>
+			</tbody>
+
+
+		</table>
+	  </div>
+	</div>
+</div>
+
+</body>
+
+<br>
+<br>
+
+<h2 align="center">Skils</h2>
+
+<div class = "table-responsive"> 
+
+    <table class="table table-bordered table-striped table-highlight">
+      <thead  align="center" class="thead-inverse">
+			<tr>
+				<th>Dynamic Programming</th>
+				<th>Number Theory</th>
+				<th>String</th>
+				<th>Geometry</th>
+				<th>Flow</th>
+			</tr>
+
+		</thead>
+
+		<tbody align="center">
+			<tr>
+				<td>10%</td>
+				<td>50%</td>
+				<td>90%</td>
+				<td>70%</td>
+				<td>13%</td>
+			</tr>
+		</tbody>
+
+
+	</table>
+</div>
+
+
+
+{% endblock %}
