@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+ 
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active"> <a href="#"> Home</a></li>
+  <li class="breadcrumb-item active"> <a href="#"> Problem Bank</a></li>
+{% endblock %}
+
+{% block content %}
+
+<div align="center" >
+	<h1 >Problem Bank</h1>
+</div>
+
+
+<br>
+<br>
+
+<div class="container" align="center" >
+	<div class="dropup">
+	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Problem Catagory
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu" >
+	      <li><a href="#">Dynamic Programming</a></li>
+	      <li><a href="#">Graph Theory</a></li>
+	      <li><a href="#">Number Theory</a></li>
+	      <li><a href="#">Geometry</a></li>
+	      <li><a href="#">Flow</a></li>
+	      <li><a href="#">String</a></li>
+
+	    </ul>
+  	</div>
+
+</div>
+
+
+
+  	<div align="center"  class= " table-responsive " >
+	 <table  class="table table-bordered table-striped table-highlight">
+	      <thead  align="center" class="thead-inverse">
+				<tr>
+					<th>ID</th>
+					<th>Problem Name</th>
+					<th>Difficulty Level</th>
+					<th>Solved</th> 
+				</tr>
+
+			</thead>
+
+			<tbody align="center">
+				<tr>
+					<td><a href="#" > Uva 123</td>
+					<td> Fill the grid</td>
+					<td> 2.9</td>
+					<td>NO</td>
+				</tr>
+				<tr>
+					<td><a href="#" > LOJ 1223</td>
+					<td> ABC</td>
+					<td> 9</td>
+					<td>YES</td>
+				</tr>
+			</tbody>
+
+
+		</table>
+	  </div> 
+
+</body>
+
+{% endblock %}
