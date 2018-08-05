@@ -1,2 +1,2 @@
 # Contest-Helper
-Please use python to see the files/static site
+You need to fire up Django surver to view this project. 
