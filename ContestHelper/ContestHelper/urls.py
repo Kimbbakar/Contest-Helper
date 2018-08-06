@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from accounts import views as accounts_views
+from Helper import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',views.contesthelper,name='section' ),
+    url(r'^signup$',accounts_views.signup,name='signup' ),
 ]
