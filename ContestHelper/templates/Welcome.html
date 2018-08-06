@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block stylesheet%}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -13,10 +12,11 @@ body, html {height: 100%}
     min-height: 100%;
     background-position: center;
     background-size: cover;
+}
     </style>
     <style>
-.button {
-    background-color: olive;
+input {
+    background-color: #007bff;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -24,25 +24,31 @@ body, html {height: 100%}
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-
+    margin: 10px 0;
+    cursor: pointer; 
+    vertical-align: middle;
 }
 </style>
-<body>
+{% endblock %}
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    CSE482
-  </div>
+{% block body %}
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">  
   <div class="w3-display-middle">
-    <h1 id="h" style="font-size:300%;">Welcome to Contest Help</h1>
-    <h2>Your Quest for CODE begins here</h2>
-    
-    <input type="button" class="button" value="Start your journey">
+    <h1 id="h" style="font-size:300%; color:#00b33c; "  >Welcome to Contest Helper</h1>
+    <h3 style="color:#00b33c; ">Your Quest for CODE begins here</h3>
+    <form method="POST" action="signup">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Start your journey">
+    </form>
+
+    <form method="POST" action="login">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Have an account?">
+    </form>
+
+
   </div>
   
-</div>
-
-</body>
-</html>
+</div> 
+{% endblock %}

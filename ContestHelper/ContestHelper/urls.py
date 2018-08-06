@@ -20,6 +20,6 @@ from Helper import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.contesthelper,name='section' ),
+    url(r'^$',accounts_views.welcome,name='welcome' ),
     url(r'^signup$',accounts_views.signup,name='signup' ),
 ]
