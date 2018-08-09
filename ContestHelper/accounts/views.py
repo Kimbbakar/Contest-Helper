@@ -1,8 +1,8 @@
 from django.contrib.auth import login as auth_login 
 from django.shortcuts import render, redirect
-from .forms import signupform
+from .forms import signupform, LogInForm
 from Helper.models import userinfo
- 
+from django.contrib.auth import authenticate  
 
 def signup(request):
     if request.method == 'POST':
@@ -22,3 +22,26 @@ def signup(request):
 
 def welcome(request):
     return render(request,'welcome.html');
+
+def login(request):
+    if request.user.is_authenticated:
+        return redirect('userprofile',pk = user.username )
+    
+    Warning = 0
+
+    if request.method=='POST':
+        form = LogInForm(request.POST)
+
+        if form.is_valid():            
+            user = authenticate(request, username=form['username'].value(), password=form['password'].value() )
+            if user is not None:
+                auth_login(request,user)
+                return redirect('userprofile',pk = user.username )
+            else:
+                Warning = 1
+        else: 
+            Warning = 2 
+    else: 
+        form = LogInForm()
+
+    return render(request,'login.html',{'form':form , 'Warning':Warning } )

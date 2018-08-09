@@ -4,6 +4,10 @@
 {% block body %}
 
   <div class="container">
+	    <h1 class="text-center logo my-4">
+	      <a href="{% url 'welcome' %}">Contest Helper</a>
+	    </h1>
+
     <h2>Sign up</h2>
     <form method="post" novalidate>
       {% csrf_token %}

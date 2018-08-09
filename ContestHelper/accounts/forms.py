@@ -29,3 +29,14 @@ class signupform(UserCreationForm):
 
         return data
 
+class LogInForm(forms.Form):
+    username = forms.CharField(label = 'Username', required=True)    
+    password = forms.CharField(widget=forms.PasswordInput)   
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+
+        if User.objects.filter(username=username).exists()==False:
+            raise forms.ValidationError("This ID does not exists!") 
+
+        return username
