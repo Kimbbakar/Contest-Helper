@@ -5,6 +5,9 @@ from Helper.models import userinfo
 from django.contrib.auth import authenticate  
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('userprofile',pk = request.user.username )
+
     if request.method == 'POST':
         form = signupform(request.POST)
         if form.is_valid():
@@ -25,7 +28,7 @@ def welcome(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('userprofile',pk = user.username )
+        return redirect('userprofile',pk = request.user.username )
     
     Warning = 0
 
@@ -36,7 +39,7 @@ def login(request):
             user = authenticate(request, username=form['username'].value(), password=form['password'].value() )
             if user is not None:
                 auth_login(request,user)
-                return redirect('userprofile',pk = user.username )
+                return redirect('userprofile',pk = request.user.username )
             else:
                 Warning = 1
         else: 
