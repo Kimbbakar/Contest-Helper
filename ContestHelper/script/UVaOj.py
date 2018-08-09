@@ -5,6 +5,7 @@ url = "http://uhunt.onlinejudge.org/"
 
 def getUserId(userName):
     id = int(requests.get(url+"api/uname2uid/"+str(userName) ).text )
+    return int(id)
 
 
 def getAllProblemList():

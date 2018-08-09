@@ -37,15 +37,12 @@ input {
   <div class="w3-display-middle">
     <h1 id="h" style="font-size:300%; color:#00b33c; "  >Welcome to Contest Helper</h1>
     <h3 style="color:#00b33c; ">Your Quest for CODE begins here</h3>
-    <form method="POST" action="signup">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Start your journey">
-    </form>
-
-    <form method="POST" action="login">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Have an account?">
-    </form>
+    <a href="/signup">
+        <input type="submit" class="btn btn-primary" value="Start your journey"> 
+    </a>
+    <a href="/login">
+    <input type="submit" class="btn btn-primary" value="Have an account?">
+    </a>
 
 
   </div>

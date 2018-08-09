@@ -1,9 +1,15 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 
-def userprofile(request):
+@login_required
+def userprofile(request,pk):	
 
-	return render(request,"User_profile.html")
+	user = get_object_or_404(User,username=pk )
+
+	return render(request,"User_profile.html",{'user':user})
 
 
 def problembank(request):
