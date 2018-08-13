@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block stylesheet%}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poiret+One" >
 <style>
-body,h1 {font-family: "Raleway", sans-serif}
+body,h1,h3 {font-family: 'Peralta', cursive;}
 body, html {height: 100%}
 .bgimg { 
+    background-image: url("{% static 'img/1.png' %}" );
     min-height: 100%;
     background-position: center;
     background-size: cover;
-}
-    </style>
-    <style>
+} 
 input {
     background-color: #007bff;
     border: none;
@@ -34,15 +33,21 @@ input {
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">  
   <div class="w3-display-middle">
-    <h1 id="h" style="font-size:300%; color:#00b33c; "  >Welcome to Contest Helper</h1>
-    <h3 style="color:#00b33c; ">Your Quest for CODE begins here</h3>
-    <a href="/signup">
-        <input type="submit" class="btn btn-primary" value="Start your journey"> 
-    </a>
-    <a href="/login">
-    <input type="submit" class="btn btn-primary" value="Have an account?">
-    </a>
+    <h1 id="h" style="font-size:300%; color:#c2c2a3; "  ><b>Welcome to Contest Helper</b></h1>
+    <h3 style="color:#cccccc; ">Your Quest for CODE begins here</h3>
+    {%if  request.user.is_authenticated %}
+        <a href={% url "userprofile" request.user.username %} >
+            <input type="submit" class="btn btn-primary" value="Start your journey"> 
+        </a>
 
+    {% else %}
+        <a href={% url "signup" %}>
+            <input type="submit" class="btn btn-primary" value="Start your journey"> 
+        </a>
+        <a href={% url "login" %}>
+        <input type="submit" class="btn btn-primary" value="Have an account?">
+        </a>
+    {% endif %}
 
   </div>
   

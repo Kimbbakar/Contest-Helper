@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import signupform, LogInForm
 from Helper.models import userinfo
 from django.contrib.auth import authenticate  
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.user.is_authenticated:
