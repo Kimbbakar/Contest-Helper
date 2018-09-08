@@ -24,9 +24,24 @@
 		<div class= "col-md-6" >
 		    <h2 class="subheading">Section</h2>
 
+			<button style="float: left;" class="btn btn-primary inline" id = "create" >Create</button> 
+			<button style="float: right;" class="btn btn-primary inline" id = "join" >Join</button> 
+			<br>
 
-			<a style="float: right;" class="btn btn-primary inline" href="">Create</a> 
-			<a style="float: left;" class="btn btn-primary inline " href="">Join</a> 
+
+			<form id = "form1" style="display: none;" form-url = '{% url "createsection" %}'  >
+				<label for="group">New Group Name: </label>
+				<input 
+				type = "text" name = "section">
+				<input type = "submit"><br>
+			</form>
+
+			<form id = "form2"  style="display: none;">
+				<label for="group">Group Name: </label>
+				<input type = "text" name = "section">
+				<input type = "submit"><br>
+			</form>
+
 			<br>
 			<br>
  

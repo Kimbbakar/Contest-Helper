@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse , JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -25,3 +25,14 @@ def section(request):
 def contesthelper(request):
 
 	return render(request,"contest_helper.html")	
+
+def createSection(request):
+	sectionName = request.GET['section']  
+
+	data = {
+		'sectionName': sectionName
+	}
+
+	return JsonResponse (data)
+
+	

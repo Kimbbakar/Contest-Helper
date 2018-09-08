@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',accounts_views.welcome,name='welcome' ),
     url(r'^(?P<pk>[.\w]+)/$',views.userprofile,name='userprofile' ),
+    url(r'^createsection$',views.createSection,name='createsection' ),
     url(r'^logout$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^signup$',accounts_views.signup,name='signup' ),
     url(r'^login$',accounts_views.login,name='login' ),
