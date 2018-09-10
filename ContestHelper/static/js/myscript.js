@@ -24,11 +24,18 @@ $("#form1").on('submit',function(e){
 		url: $("#form1").attr("form-url") ,
 		type: "GET",
 		data:{ 
-			section : $("input[name='section']",this).val()
+			section : $("input[name='section']").val()
 		}  ,
 		dataType: 'json',
 		success: function (data) {
-			alert(	data.sectionName  );
+			$("input[name='section']").val("");
+			alert(	data.messege  );
+
+			if( data.messege === 'Section open successfully!!' ){
+				$('#table1 > tbody:last').append('<tr><td><a href= /section/'+data.pk +' > ' +data.sectionName + ' </td> <td>Teacher</td></tr>'); 
+
+			}
+
 		}
 	});
 

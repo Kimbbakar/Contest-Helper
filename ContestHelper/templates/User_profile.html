@@ -50,9 +50,9 @@
 			<br>
  
 
-		  	<div align="center"  class= " table-responsive " >
-			   <table  class="table table-bordered table-striped table-highlight">
-			        <thead  align="center" class="thead-inverse">
+		  	<div class= " table-responsive text-center" >
+			   <table  id ="table1" class="table table-bordered table-striped table-highlight">
+			        <thead    >
 						<tr>
 							<th>Section Name</th>
 							<th>Role</th> 
@@ -60,17 +60,19 @@
 
 					</thead>
 
-					<tbody align="center">
-						<tr>
-							<td><a href="#" > NSU</td>
-							<td>Student</td>
-						</tr>
-						<tr>
-							<td><a href="#" > EWU</td>
-							<td>Coach</td>
+					<tbody >
+
+					{% for i in user.sections.all %}
+							<td><a href="/section" + i.pk > {{i.name}}</td>
+
+							{% if i.role == 0 %}
+								<td>Student</td>
+							{% else %}
+								<td>Teacher</td>
+							{% endif %}
 						</tr>
 					</tbody>
-
+					{% endfor %}
 
 				</table>
 			 
