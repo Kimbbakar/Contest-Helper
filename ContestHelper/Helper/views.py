@@ -47,4 +47,8 @@ def createSection(request):
 
 	return JsonResponse (data)
 
+def sectioninfo(request,pk):
+	return render(request,"section.html")
+
+
 	

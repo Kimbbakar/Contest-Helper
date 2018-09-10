@@ -16,111 +16,109 @@
      <hr>
 
 	<div class = "row">
-		<div class= "col-md-6" >
+		<div class= "col-md-4" >
 			<h4 class="subheading">{{user.userinfo.school}}</h4> 
 
 		</div>
-		{%if request.user.username == user.username %}
-		<div class= "col-md-6" >
-		    <h2 class="subheading">Section</h2>
 
-		    <div style="float: center;">
-				<button  class="btn btn-primary inline" id = "create" >Create</button> 
-				<button  class="btn btn-primary inline" id = "join" >Join</button> 
-		    </div>
+		<div class= "col-md-8" >
+		<h2 class="section-title center">Skils</h2>
+		<div class = "table-responsive"> 
+
+		    <table class="table table-bordered table-striped table-highlight">
+		      <thead  align="center" class="thead-inverse">
+					<tr>
+						<th>Dynamic Programming</th>
+						<th>Number Theory</th>
+						<th>String</th>
+						<th>Geometry</th>
+						<th>Flow</th>
+					</tr>
+
+				</thead>
+
+				<tbody align="center">
+					<tr>
+						<td>10%</td>
+						<td>50%</td>
+						<td>90%</td>
+						<td>70%</td>
+						<td>13%</td>
+					</tr>
+				</tbody>
 
 
-			<br>
-
-
-			<form id = "form1" style="display: none;" form-url = '{% url "createsection" %}'  >
-				<label for="group"><h5> New Section Name: </h5></label>
-				<input 
-				type = "text" name = "section"><br>
-				<input type = "submit"><br>
-			</form>
-
-			<form id = "form2"  style="display: none;">
-				<label for="group"><h5>Section Name: </h5></label> 
-				<input type = "text" name = "section"><br>
-				<input type = "submit"><br>
-			</form>
-
-			<br>
-			<br>
- 
-
-		  	<div class= " table-responsive text-center" >
-			   <table  id ="table1" class="table table-bordered table-striped table-highlight">
-			        <thead    >
-						<tr>
-							<th>Section Name</th>
-							<th>Role</th> 
-						</tr>
-
-					</thead>
-
-					<tbody >
-
-					{% for i in user.sections.all %}
-						<tr>
-							<td><a href="/section" + i.pk > {{i.name}}</td>
-
-							{% if i.role == 0 %}
-								<td>Student</td>
-							{% else %}
-								<td>Teacher</td>
-							{% endif %}
-						</tr>
-					{% endfor %}
-					</tbody>
-
-				</table>
-			 
-			</div>
+			</table>
+		</div>
 
 		</div>
-		{% endif %}
+
 	</div>
    
 </div>
 <br>
 <br>
-
+{%if request.user.username == user.username %}
 <div class = "container text-center" >
 
-	<h2 class="section-title center">Skils</h2>
-	<div class = "table-responsive"> 
+    <h2 class="subheading">Section</h2>
 
-	    <table class="table table-bordered table-striped table-highlight">
-	      <thead  align="center" class="thead-inverse">
+    <div style="float: center;">
+		<button  class="btn btn-primary inline" id = "create" >Create</button> 
+		<button  class="btn btn-primary inline" id = "join" >Join</button> 
+    </div>
+
+
+	<br>
+
+
+	<form id = "form1" style="display: none;" form-url = '{% url "createsection" %}'  >
+		<label for="group"><h5> New Section Name: </h5></label>
+		<input 
+		type = "text" name = "section"><br>
+		<input type = "submit"><br>
+	</form>
+
+	<form id = "form2"  style="display: none;">
+		<label for="group"><h5>Section Name: </h5></label> 
+		<input type = "text" name = "section"><br>
+		<input type = "submit"><br>
+	</form>
+
+	<br>
+	<br>
+
+
+  	<div class= " table-responsive text-center" >
+	   <table  id ="table1" class="table table-bordered table-striped table-highlight">
+	        <thead    >
 				<tr>
-					<th>Dynamic Programming</th>
-					<th>Number Theory</th>
-					<th>String</th>
-					<th>Geometry</th>
-					<th>Flow</th>
+					<th>Section Name</th>
+					<th>Role</th> 
 				</tr>
 
 			</thead>
 
-			<tbody align="center">
+			<tbody >
+
+			{% for i in user.sections.all %}
 				<tr>
-					<td>10%</td>
-					<td>50%</td>
-					<td>90%</td>
-					<td>70%</td>
-					<td>13%</td>
+					<td><a href="{% url 'sectioninfo' i.pk %} " > {{i.name}}</td>
+					{% if i.role == 0 %}
+						<td>Student</td>
+					{% else %}
+						<td>Teacher</td>
+					{% endif %}
 				</tr>
+			{% endfor %}
 			</tbody>
 
-
 		</table>
+	 
 	</div>
 
-
 </div>
- 
+{% endif %} 
 
 
 
