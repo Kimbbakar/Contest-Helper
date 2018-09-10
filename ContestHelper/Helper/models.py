@@ -6,7 +6,14 @@ class userinfo(models.Model):
 	uva  = models.CharField(max_length=20);
 	school  = models.CharField(max_length=100);
 
+class sectioninfo(models.Model):
+	user = models.ForeignKey(User ,related_name='teacher',default ="00001"  , on_delete=models.CASCADE  )	
+	name  = models.CharField(max_length=100);	
+
+
 class sectionlist(models.Model):
 	user = models.ForeignKey(User ,related_name='sections'  , on_delete=models.CASCADE  )
 	role  = models.IntegerField();
-	name  = models.CharField(max_length=100);	 
+	section = models.ForeignKey(sectioninfo,related_name='info',default = "00001"   , on_delete=models.CASCADE)
+
+

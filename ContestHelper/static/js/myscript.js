@@ -49,4 +49,57 @@ $("#form2").on('submit',function(e){
 	$('[name=group]').val("")
 
 });
+
+
+$("#form4").on('submit',function(e){ 
+	e.preventDefault(); 
+	token =  $("#form4").attr("token") ;
+	type: "GET",
+
+	$.ajax({
+		url:  $("#form4").attr("form-url") ,
+
+
+		data:{ 
+			student : $("input[name='student']").val() 
+		}  ,
+		dataType: 'json',
+		success: function (data) {
+
+ 			if( data.messege === "Student has been added!!" ){
+				$("input[name='student']").val("");
+				$('#table3 > tbody:last').append('<tr><td><a href= /'+data.pk + ' > ' +data.student + ' </td> <td> <button onclick=delFunction(this) class="btn btn-info"  pk = ' + data.pk +  ' > Remove </button></td></tr>'); 
+
+			} 
+			alert(data.messege);
+
+		}
+	});
+});
+
+
+function delFunction(e) { 
+
+/*	$(e).preventDefault(); */
+	type: "GET", 
+
+	$.ajax({
+		url: $("#abc").attr("form-url") ,
+
+		data:{ 
+			student : $(e).attr("pk") 
+		}  ,
+		dataType: 'json',
+		success: function (data) {
+			alert(data.messege);
+
+		}
+	});
+	$(e).closest('tr').remove();
+
+
+	return false; 
+}
+
+
  
