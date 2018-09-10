@@ -6,7 +6,7 @@ class userinfo(models.Model):
 	uva  = models.CharField(max_length=20);
 	school  = models.CharField(max_length=100);
 
-class section(models.Model):
-	user = models.OneToOneField(User,related_name='section',primary_key=True )
+class sectionlist(models.Model):
+	user = models.ForeignKey(User ,related_name='sections'  , on_delete=models.CASCADE  )
 	role  = models.IntegerField();
-	school  = models.CharField(max_length=100);	 
+	name  = models.CharField(max_length=100);	 
