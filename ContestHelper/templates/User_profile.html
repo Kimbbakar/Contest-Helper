@@ -63,6 +63,7 @@
 					<tbody >
 
 					{% for i in user.sections.all %}
+						<tr>
 							<td><a href="/section" + i.pk > {{i.name}}</td>
 
 							{% if i.role == 0 %}
@@ -71,8 +72,8 @@
 								<td>Teacher</td>
 							{% endif %}
 						</tr>
-					</tbody>
 					{% endfor %}
+					</tbody>
 
 				</table>
 			 
