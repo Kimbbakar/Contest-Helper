@@ -8,63 +8,71 @@
 
 {% block content %}
 
-<div align="center" >
-	<h1 >Problem Bank</h1>
+<div class="text-center" >
+	<h1 class="section-title center">Problem Bank</h1>
 </div>
 
-
+<hr>
 <br>
-<br>
 
-<div class="container" align="center" >
-	<div class="dropup">
-	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Problem Catagory
-	    <span class="caret"></span></button>
-	    <ul class="dropdown-menu" >
-	      <li><a href="#">Dynamic Programming</a></li>
-	      <li><a href="#">Graph Theory</a></li>
-	      <li><a href="#">Number Theory</a></li>
-	      <li><a href="#">Geometry</a></li>
-	      <li><a href="#">Flow</a></li>
-	      <li><a href="#">String</a></li>
+<div class="dropup text-center">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Problem Catagory
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu text-center" >
+      <li><a href="{% url 'problembank' 1%} ">Dynamic Programming</a></li>
+      <li><a href="{% url 'problembank' 2%}">Graph Theory</a></li>
+      <li><a href="{% url 'problembank' 3%}">Number Theory</a></li>
+      <li><a href="{% url 'problembank' 4%}">Geometry</a></li>
+      <li><a href="{% url 'problembank' 5%}">Flow</a></li>
+      <li><a href="{% url 'problembank' 5%}">String</a></li>
 
-	    </ul>
-  	</div>
-
+    </ul>
 </div>
+ 
+<br>
 
 
+<div  class= " table-responsive text-center" >
+<table  class="table table-bordered table-striped table-highlight">
+  <thead   class="thead-inverse">
+		<tr>
+			<th>ID</th>
+			<th>Problem Name</th>
+			<th>Difficulty Level</th>
+			<th>Category</th> 
+		</tr>
 
-  	<div align="center"  class= " table-responsive " >
-	 <table  class="table table-bordered table-striped table-highlight">
-	      <thead  align="center" class="thead-inverse">
-				<tr>
-					<th>ID</th>
-					<th>Problem Name</th>
-					<th>Difficulty Level</th>
-					<th>Solved</th> 
-				</tr>
-
-			</thead>
-
-			<tbody align="center">
-				<tr>
-					<td><a href="#" > Uva 123</td>
-					<td> Fill the grid</td>
-					<td> 2.9</td>
-					<td>NO</td>
-				</tr>
-				<tr>
-					<td><a href="#" > LOJ 1223</td>
-					<td> ABC</td>
-					<td> 9</td>
-					<td>YES</td>
-				</tr>
-			</tbody>
+	</thead>
 
 
-		</table>
-	  </div> 
+	<tbody  >
+
+		{% for i in Problems%}
+
+			<tr>
+				<td><a href="#" > {{i.number}} </td>
+				<td> {{i.title}}</td>
+				<td> {{i.difficulty}} </td>
+				
+				{% if i.category == 1 %}
+					<td>DP</td>
+				{% elif i.category == 2%}
+					<td>Graph Theory</td>					
+				{% elif i.category == 3 %}
+					<td>Flow</td>					
+				{% elif i.category == 4%}
+					<td>Number Theory</td>					
+				{% else %}
+					<td>Geomatry</td>					
+
+				{% endif %}
+			</tr>
+
+		{% endfor %}
+
+
+</table>
+</div> 
 
 </body>
 

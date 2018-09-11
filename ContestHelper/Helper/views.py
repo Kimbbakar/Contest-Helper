@@ -1,9 +1,16 @@
+import os,sys,random
+SCRIPT_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SCRIPT_DIR = os.path.join(SCRIPT_DIR, 'script'); 
+sys.path.append(SCRIPT_DIR)
+
+from UVaOj import getUserId ,getAllProblemList
+
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse , JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import sectionlist,sectioninfo
+from .models import sectionlist,sectioninfo, problemset
 
 @login_required
 def userprofile(request,pk):	
@@ -11,15 +18,29 @@ def userprofile(request,pk):
 
 	return render(request,"User_profile.html",{'user':user})
 
+# @login_required
+# def scriptrun(request):	
+# 	Problems = getAllProblemList()
 
-def problembank(request):
+# 	for i in Problems:
+# 		obj = problemset(title = i['title'],number = i['number'],category = random.randint(1,6), difficulty = random.randint(1,4)  )
+# 		obj.save()
 
-	return render(request,"problem_bank.html")
+# 	return render(request,"User_profile.html",{'user':request.user})
 
 
-def section(request):
+def problembank(request,pk=None):
 
-	return render(request,"section.html")	
+	if pk==None:
+		pk = 0
+
+	problems = list(problemset.objects.filter(category=pk))
+
+
+
+	return render(request,"problem_bank.html",{"Problems":problems } )
+
+ 
 
 
 def contesthelper(request):
@@ -103,6 +124,8 @@ def deletestudent(request,pk):
 		data["messege"] = "Student has been deleted!!"
 
 	return JsonResponse(data)	
+
+
 
 
 	

@@ -10,43 +10,20 @@
  
  
 <div class="container text-center"   >
-	<h1 class="section-title center">{{user.first_name}}</h1>
+	<h1 class="section-title center">About</h1>
      <hr>
 
 	<div class = "row">
 		<div class= "col-md-4" >
-			<h4 class="subheading">{{user.userinfo.school}}</h4> 
+			<h2 class="subheading">Name: {{user.first_name}}</h2> 
+			<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4> 
 		</div>
 
 		<div class= "col-md-8" >
-		<h2 class="section-title center">Skils</h2>
-		<div class = "table-responsive"> 
-
-		    <table class="table table-bordered table-striped table-highlight">
-		      <thead  align="center" class="thead-inverse">
-					<tr>
-						<th>Dynamic Programming</th>
-						<th>Number Theory</th>
-						<th>String</th>
-						<th>Geometry</th>
-						<th>Flow</th>
-					</tr>
-
-				</thead>
-
-				<tbody align="center">
-					<tr>
-						<td>10%</td>
-						<td>50%</td>
-						<td>90%</td>
-						<td>70%</td>
-						<td>13%</td>
-					</tr>
-				</tbody>
-
-
-			</table>
-		</div>
+			<h2 class="section-title center">Skils</h2>
+				 <canvas id="cvs" width="500" height="400">
+				    
+				</canvas>
 
 		</div>
 

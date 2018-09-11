@@ -17,3 +17,9 @@ class sectionlist(models.Model):
 	section = models.ForeignKey(sectioninfo,related_name='info',default = "00001"   , on_delete=models.CASCADE)
 
 
+class problemset(models.Model):
+	title  = models.CharField(max_length=100);	
+	number =  models.CharField(max_length=100,primary_key = True);
+	link  = models.CharField(max_length=100);
+	category  = models.IntegerField();
+	difficulty = models.IntegerField();
