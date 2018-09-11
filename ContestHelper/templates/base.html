@@ -26,9 +26,10 @@
       </button>
       <div class="collapse navbar-collapse" id="mainMenu">
         <ul class="navbar-nav ml-auto">
-        <li><a href="{% url 'problembank' 1%} ">Problem Bank</a> </li>
 
           <li class="nav-item dropdown">
+        <li><a  sytle = "float: center;" class="navbar-brand" href="{% url 'problembank' 1%} ">Problem Bank</a> </li>
+
             <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Hello {{request.user.username}}
             </a>

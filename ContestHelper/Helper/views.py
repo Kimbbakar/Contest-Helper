@@ -128,4 +128,18 @@ def deletestudent(request,pk):
 
 
 
+def suggestproblem(request):
+
+
+	problems = list(problemset.objects.filter(category=random.randint(1,6),difficulty = random.randint(1,4) ).order_by('?')[: random.randint(5,10)] )
+	
+	data = {}
+	data ['problem'] = []
+
+	for i in problems:
+		data['problem'].append( { 'title' : i.title,'number' : i.number,'category' : i.category, 'difficulty' : i.difficulty } )	
+
+	return JsonResponse(data)	
+
+ 
 	

@@ -102,4 +102,25 @@ function delFunction(e) {
 }
 
 
+$("#chelper").on('submit',function(e){ 
+	e.preventDefault();  
+	type: "GET",
+
+	$.ajax({
+		url:   $("#chelper").attr("form-url")  ,
+		data: {
+
+		} ,
+		dataType: 'json',
+		success: function (data) {
  
+			$("#table5 td").remove();
+			for(var i =0;i < data.problem.length  ;i++)
+			{
+  
+				$('#table5 > tbody').append('<tr><td><a href= /'+data['problem'][i] .number + ' > ' +data['problem'][i] .number + ' </td> <td>' +   data['problem'][i] .title  +'</td></tr>'); 
+			}
+
+		}
+	});
+}); 

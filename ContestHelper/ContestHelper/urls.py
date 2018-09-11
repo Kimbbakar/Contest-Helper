@@ -25,6 +25,7 @@ urlpatterns = [
 #    url(r'^scriptrun/$',views.scriptrun,name='scriptrun' ),
     url(r'^problembank/(?P<pk>[.\w]+)$',views.problembank,name='problembank' ), 
     url(r'^createsection$',views.createSection,name='createsection' ), 
+    url(r'^suggestproblem$',views.suggestproblem,name='suggestproblem' ), 
     url(r'^logout$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^signup$',accounts_views.signup,name='signup' ),
     url(r'^login$',accounts_views.login,name='login' ),

@@ -21,7 +21,7 @@
 	<div class = "row">
 
 		<div class= "col-md-6" >
-			<p>safldjkas</p>
+			<h2 class="section-title center">Some of the details of the section will be here</h2>
 		</div>
 
 		<div class= "col-md-6" >
@@ -46,15 +46,35 @@
 		<div class = "col-md-6" >
 			<h4 class="subheading">Problem Set</h4> 
  			<br>
-			<form action="#" class = "inline" >
+			<form id = "chelper"  form-url = {% url 'suggestproblem' %} section = {{section_pk.pk}}  class = "inline" >
 				<select style = "width: 50% ">
-				  <option value="cakewalk">Cake Walk</option>
-				  <option value="easy">Easy</option>
-				  <option value="medium">Medium</option>
-				  <option value="mediumhard">Medium Hard</option>
+				  <option value="1">Cake Walk</option>
+				  <option value="2">Medium</option>
+				  <option value="3">Medium Hard</option>
 				</select>
-			    <input type="submit" class="btn btn-info"  value="Create contest" >
+			    <input type="submit" class="btn btn-info"  value="Createcontest" >
 			</form>
+
+			<div  class= " table-responsive text-center" >
+				<table  id = "table5" class="table table-bordered table-striped table-highlight">
+				    <thead class="thead-inverse">
+						<tr>
+							<th>ID</th>
+							<th>Problem Name</th>
+						</tr>
+					</thead>
+
+					<tbody >
+						<tr>
+							<td>ID</td>
+							<td>Problem Name</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+
 		</div>
 
 
