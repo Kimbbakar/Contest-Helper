@@ -12,11 +12,12 @@ def getAllProblemList():
     allProblem = requests.get(url+"api/p")
     allProblem = json.loads(allProblem.text)
     ProblemList = list() 
-
     for i in allProblem:
         ProblemList.append( {'id':i[0],'number':i[1],'title':i[2] } ) 
 
     return ProblemList
+
+# ProblemList is a dictionary 
 
 def getUserSolveList(userName,ProblemList): 
 
@@ -30,7 +31,8 @@ def getUserSolveList(userName,ProblemList):
 
     for j in range(0,len (z[0]['solved'] ) ):
         for i in range(32):
-            if (z[0]['solved'][j]&(1<<i) ):
-                SolveList.append(ProblemList[32*j + i]   )
+            if (z[0]['solved'][j]&(1<<i)   ):  
+                SolveList.append(ProblemList[32*j + i]   )   
 
     return SolveList
+ 
