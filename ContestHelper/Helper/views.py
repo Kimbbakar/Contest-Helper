@@ -2,8 +2,8 @@ import os,sys,random
 SCRIPT_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPT_DIR = os.path.join(SCRIPT_DIR, 'script'); 
 sys.path.append(SCRIPT_DIR)
-
-from UVaOj import getUserId ,getAllProblemList
+  
+import UVaOj
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
@@ -18,15 +18,17 @@ def userprofile(request,pk):
 
 	return render(request,"User_profile.html",{'user':user})
 
-# @login_required
-# def scriptrun(request):	
-# 	Problems = getAllProblemList()
+@login_required
+def scriptrun(request):	
+	Problems = UVaOj.getAllProblemList()
+#	problemset.objects.all().delete()
 
-# 	for i in Problems:
-# 		obj = problemset(title = i['title'],number = i['number'],category = random.randint(1,6), difficulty = random.randint(1,4)  )
-# 		obj.save()
+	for i in Problems:
+		if problemset.objects.filter(id = i['id']).exists()==False :
+			obj = problemset(title = i['title'],id = i['id'],number = i['number'],category = random.randint(1,7), difficulty = random.randint(1,4)  )
+			obj.save()
 
-# 	return render(request,"User_profile.html",{'user':request.user})
+	return HttpResponse("Script executed successfully!!! ")
 
 
 def problembank(request,pk=None):
@@ -142,4 +144,72 @@ def suggestproblem(request):
 	return JsonResponse(data)	
 
  
-	
+def getUserInfo(request,pk):
+
+	problem_list = list(problemset.objects.values())
+	problem_dict =dict()
+
+	for i in problem_list:
+		problem_dict[i["id"] ] = int (i["number"] )
+
+	user = User.objects.get(username=pk)
+	user_solve_list = UVaOj.getUserSolveList(user.userinfo.uva,problem_dict)
+
+	problem_dict =dict()
+
+	count  = {}
+	count ["DP"] = 0;
+	count ["Graph"] = 0;
+	count ["Flow"] = 0;
+	count ["Number Theory"] = 0;
+	count ["String"] = 0;
+	count ["Geometry"] = 0;  
+
+	mark  = {}
+	mark [1] =  "DP";
+	mark [2] =  "Graph";
+	mark [3] =  "Flow";
+	mark [4] =  "Number Theory";
+	mark [5] =  "String"; 
+	mark [6] =  "Geometry";  
+
+
+
+	for i in problem_list:
+		problem_dict[i["number"] ] = int (i["category"] )
+		count[ mark[int (i["category"] ) ] ] +=1
+
+
+	data = {} 
+
+	data ["uva"] =  len(user_solve_list)  
+
+
+
+	data ["DP"] = 0;
+	data ["Graph"] = 0;
+	data ["Flow"] = 0;
+	data ["Number Theory"] = 0;
+	data ["String"] = 0;
+	data ["Geometry"] = 0; 
+
+
+	for i in user_solve_list:
+		data[ mark[ problem_dict[i] ] ] +=1;
+
+
+
+
+	for i in data:
+		if i == "uva":
+			continue
+ 
+		data[i]/=count[i] 
+		data[i]*=10 
+		data[i] = int (data[i]) + random.randint(1,6)
+ 
+
+	return JsonResponse(data)	 
+
+	# data[''] = '';
+	# data ['DP'] = `	` [U]
