@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+{% load static %}
  
 
 {% block breadcrumb %}
@@ -10,6 +12,8 @@
  
  
 <div class="container text-center"   >
+
+
 	<h1 class="section-title center">About</h1>
      <hr>
 
@@ -17,11 +21,15 @@
 		<div class= "col-md-4" >
 			<h2 class="subheading">Name: {{user.first_name}}</h2> 
 			<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4> 
+			<h4 class="subheading">Uva: <i> <span id ="uvacount"> </i> </span></h4> 
 		</div>
 
 		<div class= "col-md-8" >
 			<h2 class="section-title center">Skils</h2>
-				 <canvas id="cvs" width="500" height="400">
+				<div id="LoadingImage" style="display: none">
+				  	<img src="{% static 'img/loadimage.gif' %} " >
+				</div>
+				 <canvas style="display: none" id="profile" userid = {{user.username}} canvas-url = {% url "getuserinfo" user.username %} width="500" height="400">
 				    
 				</canvas>
 

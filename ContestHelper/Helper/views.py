@@ -210,6 +210,4 @@ def getUserInfo(request,pk):
  
 
 	return JsonResponse(data)	 
-
-	# data[''] = '';
-	# data ['DP'] = `	` [U]
+ 
