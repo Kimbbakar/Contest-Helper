@@ -19,7 +19,8 @@ class sectionlist(models.Model):
 
 class problemset(models.Model):
 	title  = models.CharField(max_length=100);	
-	number =  models.CharField(max_length=100,primary_key = True);
+	number =  models.IntegerField(primary_key = True);
+	id =  models.IntegerField();
 	link  = models.CharField(max_length=100);
 	category  = models.IntegerField();
 	difficulty = models.IntegerField();
