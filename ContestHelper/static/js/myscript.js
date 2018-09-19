@@ -81,30 +81,32 @@ $("#form4").on('submit',function(e){
 function delFunction(e) { 
 
 /*	$(e).preventDefault(); */
-	type: "GET", 
+	
+	var r = confirm("Wants to remove a student?");
+	
+	if (r==true){
+		$.ajax({
+			url: $("#abc").attr("form-url") ,
 
-	$.ajax({
-		url: $("#abc").attr("form-url") ,
+			data:{ 
+				student : $(e).attr("pk") 
+			}  ,
+			dataType: 'json',
+			success: function (data) {
+				alert(data.messege);
 
-		data:{ 
-			student : $(e).attr("pk") 
-		}  ,
-		dataType: 'json',
-		success: function (data) {
-			alert(data.messege);
+			}
+		});
+		$(e).closest('tr').remove();		
+	}
 
-		}
-	});
-	$(e).closest('tr').remove();
 
 
 	return false; 
 }
 
-
 $("#chelper").on('submit',function(e){ 
-	e.preventDefault();  
-	type: "GET",
+	e.preventDefault();   
 
 	$.ajax({
 		url:   $("#chelper").attr("form-url")  ,

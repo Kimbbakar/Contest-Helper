@@ -47,12 +47,12 @@
 			<h4 class="subheading">Problem Set</h4> 
  			<br>
 			<form id = "chelper"  form-url = {% url 'suggestproblem' %} section = {{section_pk.pk}}  class = "inline" >
-				<select style = "width: 50% ">
+				<select id = "contest" name = "contest" style = "width: 50% ">
 				  <option value="1">Cake Walk</option>
 				  <option value="2">Medium</option>
 				  <option value="3">Medium Hard</option>
 				</select>
-			    <input type="submit" class="btn btn-info"  value="Createcontest" >
+			    <input type="submit" class="btn btn-info"  value="Create Contest" >
 			</form>
 
 			<div  class= " table-responsive text-center" >
