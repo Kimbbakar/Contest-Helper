@@ -4,12 +4,19 @@ import json
 url = "http://uhunt.onlinejudge.org/"
 
 def getUserId(userName):
-    id = int(requests.get(url+"api/uname2uid/"+str(userName) ).text )
-    return int(id)
+    id = (requests.get(url+"api/uname2uid/"+str(userName) )  )
+
+    while id.status_code!=200:
+        id = (requests.get(url+"api/uname2uid/"+str(userName) )  )
+    return id.text
 
 
 def getAllProblemList():
     allProblem = requests.get(url+"api/p")
+
+    while allProblem.status_code!=200:
+        allProblem = requests.get(url+"api/p")        
+
     allProblem = json.loads(allProblem.text)
     ProblemList = list() 
     for i in allProblem:
@@ -22,9 +29,10 @@ def getAllProblemList():
 def getUserSolveList(userName,ProblemList): 
 
     userId = getUserId(userName)
-
     SolveListApi = requests.get(url+"api/solved-bits/"+str(userId))
 
+    while SolveListApi.status_code!=200:
+        SolveListApi = requests.get(url+"api/solved-bits/"+str(userId))
     z = json.loads(SolveListApi.text )
 
     SolveList = list()
