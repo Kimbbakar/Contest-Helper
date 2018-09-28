@@ -24,3 +24,7 @@ class problemset(models.Model):
 	link  = models.CharField(max_length=100);
 	category  = models.IntegerField();
 	difficulty = models.IntegerField();
+
+class solved(models.Model):
+	user = models.ForeignKey(User, related_name = "solved" , on_delete=models.CASCADE)
+	problem = models.ForeignKey(problemset,related_name = "user",on_delete = models.CASCADE)
