@@ -13,23 +13,47 @@
  
 <div class="container text-center"   >
 
+	<div id ='info' token-id = {{ csrf_token }} userid = {{user.username}} user-info-url = {% url "getuserinfo" user.username %}></div>
+
 
 	<h1 class="section-title center">About</h1>
      <hr>
 
 	<div class = "row">
-		<div class= "col-md-4" >
+		<div class= "col-md-5" >
 			<h2 class="subheading">Name: {{user.first_name}}</h2> 
-			<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4> 
-			<h4 class="subheading">Uva: <i> <span id ="uvacount"> </i> </span></h4> 
+			<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4>  
+			<br>
+			<button style = "float: right;" class="btn btn-primary inline"  id ="update" >Update</button>
+			<div class= " table-responsive text-center" >
+				   <table  id ="table1" class="table table-bordered table-striped table-highlight">
+				        <thead    >
+							<tr>
+								<th>Oj Name</th>
+								<th>NOS</th>  
+							</tr>
+
+						</thead>
+
+						<tbody > 
+							<tr>
+								<td>Uva </td>								 
+								<td><i> <span id ="uvacount"> </i></td>  
+							</tr> 
+						</tbody>
+
+					</table>
+			</div>
+ 
+
 		</div>
 
-		<div class= "col-md-8" >
+		<div class= "col-md-7" >
 			<h2 class="section-title center">Skils</h2>
 				<div id="LoadingImage" style="display: none">
 				  	<img src="{% static 'img/loadimage.gif' %} " >
 				</div>
-				 <canvas style="display: none" id="profile" userid = {{user.username}} canvas-url = {% url "getuserinfo" user.username %} width="500" height="400">
+				 <canvas style="display: none" id="profile"  width="500" height="400">
 				    
 				</canvas>
 
@@ -104,4 +128,14 @@
 
 
 
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'js/RGraph.common.core.js' %}"></script>
+    <script src="{% static 'js/RGraph.common.dynamic.js' %}"></script>
+    <script src="{% static 'js/RGraph.common.tooltips.js' %}"></script>
+    <script src="{% static 'js/RGraph.common.effects.js' %}"></script>
+    <script src="{% static 'js/RGraph.radar.js' %}"></script>
+    <script src="{% static 'js/skillpie.js' %}"></script>
 {% endblock %}

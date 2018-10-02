@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse , JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import sectionlist,sectioninfo, problemset
+from .models import sectionlist,sectioninfo, problemset, solved
 
 @login_required
 def userprofile(request,pk):	
@@ -25,7 +25,7 @@ def scriptrun(request):
 
 	for i in Problems:
 		if problemset.objects.filter(id = i['id']).exists()==False :
-			obj = problemset(title = i['title'],id = i['id'],number = i['number'],category = random.randint(1,7), difficulty = random.randint(1,4)  )
+			obj = problemset(title = i['title'],id = i['id'],number = i['number'],category = random.randint(1,6), difficulty = random.randint(1,3)  )
 			obj.save()
 
 	return HttpResponse("Script executed successfully!!! ")
@@ -147,67 +147,83 @@ def suggestproblem(request):
 def getUserInfo(request,pk):
 
 	problem_list = list(problemset.objects.values())
-	problem_dict =dict()
-
-	for i in problem_list:
-		problem_dict[i["id"] ] = int (i["number"] )
+	
 
 	user = User.objects.get(username=pk)
-	user_solve_list = UVaOj.getUserSolveList(user.userinfo.uva,problem_dict)
-
-	problem_dict =dict()
-
-	count  = {}
-	count ["DP"] = 0;
-	count ["Graph"] = 0;
-	count ["Flow"] = 0;
-	count ["Number Theory"] = 0;
-	count ["String"] = 0;
-	count ["Geometry"] = 0;  
-
-	mark  = {}
-	mark [1] =  "DP";
-	mark [2] =  "Graph";
-	mark [3] =  "Flow";
-	mark [4] =  "Number Theory";
-	mark [5] =  "String"; 
-	mark [6] =  "Geometry";  
-
-
-
-	for i in problem_list:
-		problem_dict[i["number"] ] = int (i["category"] )
-		count[ mark[int (i["category"] ) ] ] +=1
-
-
+	uva_solve_list = list()
+ 
 	data = {} 
 
-	data ["uva"] =  len(user_solve_list)  
+
+	if request.POST["update"]=='false': 
+		obj = list(solved.objects.filter(user = user))
+
+		uva_solve_list = list()
+
+		for i in obj:
+			uva_solve_list.append(i.problem.number)
+
+		count  = {}
+		count ["DP"] = 0;
+		count ["Graph"] = 0;
+		count ["Flow"] = 0;
+		count ["Number Theory"] = 0;
+		count ["String"] = 0;
+		count ["Geometry"] = 0;  
+
+		mark  = {}
+		mark [1] =  "DP";
+		mark [2] =  "Graph";
+		mark [3] =  "Flow";
+		mark [4] =  "Number Theory";
+		mark [5] =  "String"; 
+		mark [6] =  "Geometry";  
+
+		problem_dict =dict()
+
+		for i in problem_list:
+			problem_dict[i["number"] ] = int (i["category"] ) 
+			count[ mark[int (i["category"] ) ] ] +=1
 
 
 
-	data ["DP"] = 0;
-	data ["Graph"] = 0;
-	data ["Flow"] = 0;
-	data ["Number Theory"] = 0;
-	data ["String"] = 0;
-	data ["Geometry"] = 0; 
+		data ["DP"] = 0;
+		data ["Graph"] = 0;
+		data ["Flow"] = 0;
+		data ["Number Theory"] = 0;
+		data ["String"] = 0;
+		data ["Geometry"] = 0; 
 
 
-	for i in user_solve_list:
-		data[ mark[ problem_dict[i] ] ] +=1;
+		for i in uva_solve_list:
+			data[ mark[ problem_dict[i] ] ] +=1;
 
 
 
 
-	for i in data:
-		if i == "uva":
-			continue
- 
-		data[i]/=count[i] 
-		data[i]*=10 
-		data[i] = int (data[i]) + random.randint(1,6)
- 
+		for i in data:
+			data[i]/=count[i] 
+			data[i]*=10 
+			data[i] = int (data[i]) + random.randint(1,6) 
+
+	else: 	
+		problem_dict =dict()
+
+		for i in problem_list:
+			problem_dict[i["id"] ] = int (i["number"] )
+		uva_solve_list = UVaOj.getUserSolveList(user.userinfo.uva,problem_dict) # Problem ID
+
+		for i in uva_solve_list:
+			problem_obj = problemset.objects.get(number=i)
+			if solved.objects.filter(user = request.user,problem=problem_obj ).exists()==False:
+				obj = solved(user = request.user,problem=problem_obj )
+				obj.save()
+
+
+
+
+	data ["uva"] =  len(uva_solve_list)  
+
 
 	return JsonResponse(data)	 
  
