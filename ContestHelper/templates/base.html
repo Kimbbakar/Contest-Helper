@@ -56,16 +56,18 @@
       {% endblock %}
     </div>
     {% endblock body %}
+
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/myscript.js' %}"></script>
-    <script src="{% static 'js/RGraph.common.core.js' %}"></script>
-    <script src="{% static 'js/RGraph.common.dynamic.js' %}"></script>
-    <script src="{% static 'js/RGraph.common.tooltips.js' %}"></script>
-    <script src="{% static 'js/RGraph.common.effects.js' %}"></script>
-    <script src="{% static 'js/RGraph.radar.js' %}"></script>
-    <script src="{% static 'js/skillpie.js' %}"></script>
+
+
+    {% block script %}
+
+    {% endblock %}
+
+
 
   </body>
 </html>
