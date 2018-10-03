@@ -6,10 +6,13 @@ if (a)
 
 function draw (ID,update = false)
 {  
-    $("#uvacount").html("?");  
     if (update==false){
+        $("#uvacount").html("?");  
         $("#LoadingImage").show(); 
     }
+    else{
+        alert("Information will be updated with int 5 minutes!");        
+    } 
 
     $.ajax({
 
@@ -54,10 +57,7 @@ function draw (ID,update = false)
                         textAccessible: true
                     }
                 }).grow();
-            }
-            else{ 
-                alert("Reload pages to see updated graph!");
-            }  
+            } 
 
 
         }

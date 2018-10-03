@@ -32,7 +32,7 @@ $("#form1").on('submit',function(e){
 			alert(	data.messege  );
 
 			if( data.messege === 'Section open successfully!!' ){
-				$('#table1 > tbody:last').append('<tr><td><a href= /section/'+data.pk +' > ' +data.sectionName + ' </td> <td>Teacher</td></tr>'); 
+				$('#table2 > tbody:last').append('<tr><td><a href= /section/'+data.pk +' > ' +data.sectionName + ' </td> <td>Teacher</td></tr>'); 
 
 			}
 
