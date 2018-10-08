@@ -8,6 +8,9 @@
 
 {% block content %}
 
+<div id ='info' token-id = {{ csrf_token }}  section = {{section_pk.pk}} ></div>
+
+
 <div>
 	<div class = "text-center">
 		<h1 >{{section_pk.name}}</h1>
@@ -46,12 +49,18 @@
 		<div class = "col-md-6" >
 			<h4 class="subheading">Problem Set</h4> 
  			<br>
-			<form id = "chelper"  form-url = {% url 'suggestproblem' %} section = {{section_pk.pk}}  class = "inline" >
-				<select id = "contest" name = "contest" style = "width: 50% ">
+			<form id = "chelper"  form-url = {% url 'suggestproblem' %}  class = "inline" >
+				<select id = "contest" name = "contest" style = "width: 25% ">
 				  <option value="1">Cake Walk</option>
 				  <option value="2">Medium</option>
 				  <option value="3">Medium Hard</option>
 				</select>
+
+				<select id = "coach" name = "coach" style = "width: 25% ">
+				  <option value="1">With Coach</option>
+				  <option value="2">Without Coach</option>
+				</select>
+
 			    <input type="submit" class="btn btn-info"  value="Create Contest" >
 			</form>
 

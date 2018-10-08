@@ -106,11 +106,15 @@ function delFunction(e) {
 }
 
 $("#chelper").on('submit',function(e){ 
-	e.preventDefault();   
-
+	e.preventDefault();     
 	$.ajax({
 		url:   $("#chelper").attr("form-url")  ,
+        type: "POST",
 		data: {
+            "csrfmiddlewaretoken": $('#info').attr("token-id") ,
+			"type": $("#contest").val(),
+			"section": $("#info").attr("section"),
+			"coach": $("#coach").val()
 
 		} ,
 		dataType: 'json',
@@ -121,8 +125,7 @@ $("#chelper").on('submit',function(e){
 			{
   
 				$('#table5 > tbody').append('<tr><td><a href= /'+data['problem'][i] .number + ' > ' +data['problem'][i] .number + ' </td> <td>' +   data['problem'][i] .title  +'</td></tr>'); 
-			}
-
+			}  
 		}
 	});
 }); 
