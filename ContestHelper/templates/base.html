@@ -18,8 +18,7 @@
       <div class="container">
         <a class="navbar-brand" href=#>Contest Helper</a>
       </div>
-
-
+  
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,7 +27,6 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item dropdown">
-        <li><a  sytle = "float: center;" class="navbar-brand" href="{% url 'problembank' 1%} ">Problem Bank</a> </li>
 
             <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Hello {{request.user.username}}
@@ -36,8 +34,10 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
               <a class="dropdown-item" href={% url "userprofile" request.user %} >My account</a>
               <a class="dropdown-item" href="#">Change password</a>
+              <a class="dropdown-item" href="{% url 'problembank' 1%} ">Problems</a>  
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href={% url "logout" %}>Log out</a>
+
             </div>
           </li>
         </ul>
