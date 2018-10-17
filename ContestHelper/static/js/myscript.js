@@ -78,6 +78,44 @@ $("#form4").on('submit',function(e){
 });
 
 
+$("#checkproblem").on('submit',function(e){ 
+	e.preventDefault();  
+
+	if ($("input[name='problemid']").val().length ){
+		$("#solver").show();
+		$.ajax({
+			url:   $("#checkproblem").attr("href") ,
+			type: "POST",
+
+			data:{ 
+	            "csrfmiddlewaretoken": $('#info').attr("token-id") ,
+				"id" : $("input[name='problemid']").val() ,
+				"section_pk": $("#info").attr("section")
+			}  ,
+			dataType: 'json',
+			success: function (data) {
+
+				if(data.solver.length){
+					$("#solver td").remove();
+					for(var i =0;i < data.solver.length  ;i++)
+					{
+		  
+						$('#solver > tbody').append('<tr><td>' + data.solver[i].username + ' </td></tr>'); 
+					}  
+				}
+				else
+					alert("No one solve this problem");
+			}
+		});		
+	}
+	else{
+		alert("Problem ID invalid");
+	} 
+
+
+});
+
+
 function delFunction(e) { 
 
 /*	$(e).preventDefault(); */

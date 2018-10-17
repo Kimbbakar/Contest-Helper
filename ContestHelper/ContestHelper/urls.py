@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^problembank/(?P<pk>[.\w]+)$',views.problembank,name='problembank' ), 
     url(r'^getuserinfo/(?P<pk>[.\w]+)$',views.getUserInfo,name='getuserinfo'),
     url(r'^createsection$',views.createSection,name='createsection' ), 
+    url(r'^whosolved$',views.whosolved,name='whosolved' ), 
     url(r'^suggestproblem$',views.suggestproblem,name='suggestproblem' ), 
     url(r'^logout$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^signup$',accounts_views.signup,name='signup' ),

@@ -23,8 +23,23 @@
 
 	<div class = "row">
 
-		<div class= "col-md-6" >
-			<h2 class="section-title center">Some of the details of the section will be here</h2>
+		<div class= "col-md-6" > 
+				<form id = "checkproblem" href = {% url "whosolved" %} > 
+					<h4 class="section-title center">Who solved this: <span> <input type = "text" style = "width: 25%" name = "problemid">
+				    <input type="submit" class="btn btn-info"   value="?" > 
+					</span> </h4>
+				</form>
+
+				<div class = "table-responsive text-center" >
+					<table id="solver" style="display: none" class="table table-bordered table-striped table-highlight">
+						<thead>
+							<th>User Name</th>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+
+
 		</div>
 
 		<div class= "col-md-6" >

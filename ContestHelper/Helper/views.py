@@ -249,3 +249,20 @@ def getUserInfo(request,pk):
 
     return JsonResponse(data)    
  
+
+def whosolved(request):
+
+    data = {}
+    cur_section = sectioninfo.objects.get(pk=request.POST['section_pk'] )
+    cur_problem = problemset.objects.get(number = request.POST['id'])
+    data ["name"] = cur_section.name 
+    data ["solver"] = []
+
+    # need to check from which online judge
+    # need to check problem id is valid or not
+
+    for i in cur_section.info.all():
+        if solved.objects.filter(user = i.user,problem = cur_problem ).exists()==True:
+            data["solver"].append({"username":i.user.username} )
+
+    return JsonResponse(data)
