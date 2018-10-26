@@ -25,11 +25,12 @@ def scriptrun(request):
 
     for i in Problems:
         if problemset.objects.filter(id = i['id']).exists()==False :
-            obj = problemset(title = i['title'],id = i['id'],number = i['number'],category = random.randint(1,6), difficulty = random.randint(1,3)  )
+            obj = problemset(title = i['title'],id = i['id'],number = i['number'])
             obj.save()
 
     return HttpResponse("Script executed successfully!!! ")
 
+## need to fix it
 
 def problembank(request,pk=None):
 
@@ -161,10 +162,11 @@ def suggestproblem(request):
     data['section'] = cur_section.name
 
     for i in problems:
-        data['problem'].append( { 'title' : i.title,'number' : i.number,'category' : i.category, 'difficulty' : i.difficulty } )    
+        data['problem'].append( { 'title' : i.title,'number' : i.number,  'difficulty' : i.difficulty } )    
 
     return JsonResponse(data)   
 
+## need to work on this function
  
 def getUserInfo(request,pk):
 
@@ -185,49 +187,6 @@ def getUserInfo(request,pk):
         for i in obj:
             uva_solve_list.append(i.problem.number)
 
-        count  = {}
-        count ["DP"] = 0;
-        count ["Graph"] = 0;
-        count ["Flow"] = 0;
-        count ["Number Theory"] = 0;
-        count ["String"] = 0;
-        count ["Geometry"] = 0;  
-
-        mark  = {}
-        mark [1] =  "DP";
-        mark [2] =  "Graph";
-        mark [3] =  "Flow";
-        mark [4] =  "Number Theory";
-        mark [5] =  "String"; 
-        mark [6] =  "Geometry";  
-
-        problem_dict =dict()
-
-        for i in problem_list:
-            problem_dict[i["number"] ] = int (i["category"] ) 
-            count[ mark[int (i["category"] ) ] ] +=1
-
-
-
-        data ["DP"] = 0;
-        data ["Graph"] = 0;
-        data ["Flow"] = 0;
-        data ["Number Theory"] = 0;
-        data ["String"] = 0;
-        data ["Geometry"] = 0; 
-
-
-        for i in uva_solve_list:
-            data[ mark[ problem_dict[i] ] ] +=1;
-
-
-
-
-        for i in data:
-            data[i]/=count[i] 
-            data[i]*=10 
-            data[i] = int (data[i]) + random.randint(1,6) 
-
     else:   
         problem_dict =dict()
 
@@ -242,6 +201,34 @@ def getUserInfo(request,pk):
                 obj.save()
 
 
+    NOT_CATEGORIZE = "NONE"
+    DP = 'DP'
+    GRAPH = 'GRAPH'
+    STRING = 'STRING'
+    NT = 'NT'
+    GEO = "GEO"
+
+    TOPIC_LIST = (
+        (NOT_CATEGORIZE , "NONE"),
+        (DP, 'Dynamic Programming'),
+        (GRAPH, 'Graph Theory'),
+        (STRING, 'String'),
+        (NT, 'Number Theory'),
+        (GEO, 'Geometry'),
+    )
+
+
+
+    for i in TOPIC_LIST:
+        Total = solved.objects.filter(topic=i[0] ).values_list('problem',flat=True).distinct() .count()
+        individual = solved.objects.filter(user =user , topic=i[0] ).values_list('problem',flat=True).count()
+        data[i[0] ] = (individual * 10.0)
+
+        if Total>0:
+            data[i[0] ] = data[i[0] ]/Total
+
+        print (i[0], data[i[0] ],Total,individual)
+ 
 
 
     data ["uva"] =  len(uva_solve_list)  

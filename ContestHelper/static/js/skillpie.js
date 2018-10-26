@@ -35,20 +35,20 @@ function draw (ID,update = false)
 
                 var abc = new RGraph.Radar({ 
                     id: ID,
-                    data: [ [0, server_response['DP'], server_response['Graph'],server_response['Flow'],server_response['Number Theory'],server_response['String'],server_response['Geometry'] ] ],
+                    data: [ [0, server_response['DP'], server_response['GRAPH'],server_response['STRING'],server_response['NT'],server_response['GEO'] ] ],
                     options: {
                         textAccessible: true,
                         tooltips: [
-                            '', 'DP', 'Graph','Flow','Number Theory','String','Geometry'
+                            '', 'Dynamic Programming', 'Graph Theory','String','Number Theory','Geometry'
                         ],
                         backgroundCirclesPoly: true,
                         backgroundCirclesSpacing: 30,
                         colors: ['transparent'],
                         axesColor: 'transparent',
                         highlights: true,
-                        strokestyle: ['red'],
+                        strokestyle: ['green'],
                         linewidth: 2,
-                        labels: ['', 'DP', 'Graph','Flow','Number Theory','String','Geometry'],
+                        labels: ['', 'DP', 'GRAPH','STRING','NT','GEO'],
                         labelsAxes: 'n',
                         textSize: 16,
                         clearto: 'white',
