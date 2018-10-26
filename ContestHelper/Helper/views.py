@@ -178,7 +178,6 @@ def getUserInfo(request,pk):
  
     data = {} 
 
-
     if request.POST["update"]=='false': 
         obj = list(solved.objects.filter(user = user))
 
@@ -196,8 +195,8 @@ def getUserInfo(request,pk):
 
         for i in uva_solve_list:
             problem_obj = problemset.objects.get(number=i)
-            if solved.objects.filter(user = request.user,problem=problem_obj ).exists()==False:
-                obj = solved(user = request.user,problem=problem_obj )
+            if solved.objects.filter(user = user,problem=problem_obj ).exists()==False:
+                obj = solved(user = user,problem=problem_obj )
                 obj.save()
 
 
@@ -226,10 +225,7 @@ def getUserInfo(request,pk):
 
         if Total>0:
             data[i[0] ] = data[i[0] ]/Total
-
-        print (i[0], data[i[0] ],Total,individual)
  
-
 
     data ["uva"] =  len(uva_solve_list)  
 
