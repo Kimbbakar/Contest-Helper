@@ -26,8 +26,8 @@ function draw (ID,update = false)
 
         dataType: 'json',
 
-        success: function (server_response) { 
-            $("#uvacount").html(server_response['uva']);
+        success: function (response) { 
+            $("#uvacount").html(response['uva']);
 
             if(update==false){
                 $("#LoadingImage").hide();
@@ -35,24 +35,24 @@ function draw (ID,update = false)
 
                 var abc = new RGraph.Radar({ 
                     id: ID,
-                    data: [ [0, server_response['DP'], server_response['GRAPH'],server_response['STRING'],server_response['NT'],server_response['GEO'] ] ],
+                    data: [ [ response['NONE'],response['DP'], response['GRAPH'],response['STRING'],response['NT'],response['GEO'] ] ],
                     options: {
                         textAccessible: true,
                         tooltips: [
-                            '', 'Dynamic Programming', 'Graph Theory','String','Number Theory','Geometry'
+                             response['NONE'].toString() ,response['DP'].toString(), response['GRAPH'].toString(),response['STRING'].toString(),response['NT'].toString(),response['GEO'].toString()
                         ],
                         backgroundCirclesPoly: true,
                         backgroundCirclesSpacing: 30,
-                        colors: ['transparent'],
+                        colors: ['#463D72'],
                         axesColor: 'transparent',
                         highlights: true,
-                        strokestyle: ['green'],
+                        strokestyle: ['#463D72'],
                         linewidth: 2,
-                        labels: ['', 'DP', 'GRAPH','STRING','NT','GEO'],
-                        labelsAxes: 'n',
+                        labels: [ 'Untaged','DP', 'GRAPH','STRING','NT','GEO'],
+                        labelsAxes: '0',
                         textSize: 16,
                         clearto: 'white',
-                        labelsAxesBoxed: true,
+                        labelsAxesBoxed: false,
                         labelsAxesBoxedZero: false,
                         textAccessible: true
                     }
