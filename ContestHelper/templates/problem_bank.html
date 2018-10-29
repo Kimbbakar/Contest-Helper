@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
- 
+{% load static %} 
 
 {% block breadcrumb %}
   <li class="breadcrumb-item active"> <a href="#"> Home</a></li>
@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+<div id ='info' token-id = {{ csrf_token }} href = {% url "getproblem" %} user_pk = {{request.user.pk}} ></div>
+
 
 <div class="text-center" >
 	<h1 class="section-title center">Problem Bank</h1>
@@ -15,65 +17,61 @@
 <hr>
 <br>
 
-<div class="dropup text-center">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Problem Catagory
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu text-center" >
-      <li><a href="{% url 'problembank' 1%} ">Dynamic Programming</a></li>
-      <li><a href="{% url 'problembank' 2%}">Graph Theory</a></li>
-      <li><a href="{% url 'problembank' 3%}">Number Theory</a></li>
-      <li><a href="{% url 'problembank' 4%}">Geometry</a></li>
-      <li><a href="{% url 'problembank' 5%}">Flow</a></li>
-      <li><a href="{% url 'problembank' 5%}">String</a></li>
+<div class="text-center">
+	<label for="topic">Topic: </label>
+	<select id = "topic">
 
-    </ul>
+	  <option value="DP">Dynamic Programming</option>
+	  <option value="GRAPH">Graph Theory</option>
+	  <option value="NT">Number Theory</option>
+	  <option value="STRING">String</option>
+	  <option value="GEO">Geometry</option>
+	  <option value="NONE">Untaged</option>
+	</select>
+
+
+	<label for="diff">Difficulty: </label>
+	<select id = "diff">
+
+	  <option value="1">Easy</option>
+	  <option value="2">Medium</option>
+	  <option value="3">Hard</option>
+	</select>
+
+ 
 </div>
  
 <br>
 
 
 <div  class= " table-responsive text-center" >
-<table  class="table table-bordered table-striped table-highlight">
-  <thead   class="thead-inverse">
-		<tr>
-			<th>ID</th>
-			<th>Problem Name</th>
-			<th>Difficulty Level</th>
-			<th>Category</th> 
-		</tr>
+	<table id = "problemset" class="table table-bordered table-striped table-highlight">
 
-	</thead>
-
-
-	<tbody  >
-
-		{% for i in Problems%}
-
+		<thead class="thead-inverse">
 			<tr>
-				<td><a href="#" > {{i.number}} </td>
-				<td> {{i.title}}</td>
-				<td> {{i.difficulty}} </td>
-				
-				{% if i.category == 1 %}
-					<td>DP</td>
-				{% elif i.category == 2%}
-					<td>Graph Theory</td>					
-				{% elif i.category == 3 %}
-					<td>Flow</td>					
-				{% elif i.category == 4%}
-					<td>Number Theory</td>					
-				{% else %}
-					<td>Geomatry</td>					
-
-				{% endif %}
+				<th>ID</th>
+				<th>Problem Name</th>
+				<th>Difficulty Level</th>
+				<th>Status</th> 
 			</tr>
 
-		{% endfor %}
+		</thead>
 
 
-</table>
+		<tbody>
+ 
+ 
+
+		</tbody>
+	</table>
+
+	<div id="LoadingImage" style="display: none"> <img src="{% static 'img/loadimage.gif' %} " > </div>
 </div> 
 
 </body>
 
+{% endblock %}
+
+{% block script %} 
+    <script src="{% static 'js/problembank.js' %}"></script>
 {% endblock %}

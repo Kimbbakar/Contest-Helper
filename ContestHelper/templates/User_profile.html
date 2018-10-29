@@ -15,34 +15,32 @@
 
 	<div id ='info' token-id = {{ csrf_token }} userid = {{user.username}} user-info-url = {% url "getuserinfo" user.username %}></div>
 
-
-	<h1 class="section-title center">About</h1>
-     <hr>
+	<h3 class="subheading">Name: {{user.first_name}}</h3>
+	<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4>
+	<hr>
 
 	<div class = "row">
 		<div class= "col-md-5" >
-			<h2 class="subheading">Name: {{user.first_name}}</h2> 
-			<h4 class="subheading">School: <i> {{user.userinfo.school}}</i></h4>  
 			<br>
 			<button style = "float: right;" class="btn btn-primary inline"  id ="update" >Update</button>
-			<div class= " table-responsive text-center" >
-				   <table  id ="table1" class="table table-bordered table-striped table-highlight">
-				        <thead    >
-							<tr>
-								<th>Oj Name</th>
-								<th>NOS</th>  
-							</tr>
+			<div class= "table-responsive text-center" >
+			   <table  id ="table1" class="table table-bordered table-striped table-highlight">
+			        <thead    >
+						<tr>
+							<th>Oj Name</th>
+							<th>NOS</th>  
+						</tr>
 
-						</thead>
+					</thead>
 
-						<tbody > 
-							<tr>
-								<td>Uva </td>								 
-								<td><i> <span id ="uvacount"> </i></td>  
-							</tr> 
-						</tbody>
+					<tbody > 
+						<tr>
+							<td>Uva </td>								 
+							<td><i> <span id ="uvacount"> </i></td>  
+						</tr> 
+					</tbody>
 
-					</table>
+				</table>
 			</div>
  
 

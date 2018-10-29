@@ -32,16 +32,42 @@ def scriptrun(request):
 
 ## need to fix it
 
-def problembank(request,pk=None):
+def problembank(request):
+ 
+    return render(request,"problem_bank.html")
+ 
+def getproblem(request):
 
-    if pk==None:
-        pk = 0
+    problems = list(problemset.objects.filter())
+    data = {} 
+    for i in problems:
+        #print (i.number)
+        data[i.number] =  {'title':i.title,'number':i.number,'difficulty':i.difficulty } 
+        data[i.number]['solved'] = 0  
+        data[i.number]['user_difficulty'] = 0  
+        data[i.number]['user_topic'] = 0  
+        data[i.number]['DP'] = 0
+        data[i.number]['GRAPH'] = 0
+        data[i.number]['STRING'] = 0
+        data[i.number]['GEO'] = 0
+        data[i.number]['NONE'] = 1
 
-    problems = list(problemset.objects.filter(category=pk))
+    solved_problem = list(solved.objects.filter())
 
+    user = User.objects.get(pk=request.POST['pk'])
 
+    for i in solved_problem:
+        if i.user.username == user.username:
+            data[i.problem.number]['solved'] = 1
+            data[i.problem.number]['user_difficulty'] = i.difficulty  
+            data[i.problem.number]['user_topic'] = i.topic
 
-    return render(request,"problem_bank.html",{"Problems":problems } )
+        if i.topic != "NONE":  
+            data[i.problem.number]['NONE'] = 0
+            data[i.problem.number][i.topic] = 1       
+
+    return JsonResponse(data)
+
 
  
 

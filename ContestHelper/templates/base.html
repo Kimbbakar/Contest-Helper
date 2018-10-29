@@ -33,9 +33,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
               <a class="dropdown-item" href={% url "userprofile" request.user %} >My account</a>
-              <a class="dropdown-item" href="#">Change password</a>
-              <a class="dropdown-item" href="{% url 'problembank' 1%} ">Problems</a>  
+              <a class="dropdown-item" href={% url 'problembank'%}>Problems</a>  
               <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Change password</a>
               <a class="dropdown-item" href={% url "logout" %}>Log out</a>
 
             </div>
